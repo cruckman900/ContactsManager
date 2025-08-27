@@ -20,5 +20,12 @@ namespace ServiceContracts
         /// </summary>
         /// <returns>Returns a list of objects of PersonResponse type</returns>
         List<PersonResponse> GetAllPersons();
+
+        /// <summary>
+        /// Returns the person object based on the give person id
+        /// </summary>
+        /// <param name="personID">Person id to serach</param>
+        /// <returns>Returns the matching person object</returns>
+        PersonResponse? GetPersonByPersonID(Guid? personID);
     }
 }
