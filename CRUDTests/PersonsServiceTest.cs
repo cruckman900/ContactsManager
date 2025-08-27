@@ -26,7 +26,7 @@ namespace CRUDTests
         public void AddPerson_NullPerson()
         {
             //Arrange
-            PersonAddRequest personAddRequest = null;
+            PersonAddRequest? personAddRequest = null;
 
             //Assert
             Assert.Throws<ArgumentNullException>(() =>
