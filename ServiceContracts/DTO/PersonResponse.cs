@@ -39,7 +39,7 @@ namespace ServiceContracts.DTO
                 && Gender == person.Gender
                 && CountryID == person.CountryID
                 && Address == person.Address
-                && ReceiveNewsLetters == person.ReceiveNewsLetters
+                && ReceiveNewsLetters == person.ReceiveNewsLetters;
         }
 
         public override int GetHashCode()
