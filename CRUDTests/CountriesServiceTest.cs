@@ -18,8 +18,8 @@ namespace CRUDTests
         }
 
         #region AddCountry
-        //When CountryAddRequest is null, it should throw ArgumentNullException
         [Fact]
+        //When CountryAddRequest is null, it should throw ArgumentNullException
         public void AddCountry_NullCountry()
         {
             //Arrange
@@ -33,8 +33,8 @@ namespace CRUDTests
             });
         }
 
-        //When the CountryName is null, it should throw ArgumentException
         [Fact]
+        //When the CountryName is null, it should throw ArgumentException
         public void AddCountry_CountryNameIsNull()
         {
             //Arrange
@@ -48,8 +48,8 @@ namespace CRUDTests
             });
         }
 
-        //When the CountryName is duplicate, it should throw ArgumentException
         [Fact]
+        //When the CountryName is duplicate, it should throw ArgumentException
         public void AddCountry_DuplicateCountryName()
         {
             //Arrange
@@ -65,8 +65,8 @@ namespace CRUDTests
             });
         }
 
-        //When you supply proper CountryName, it should insert (add) the country to the existing list of countries
         [Fact]
+        //When you supply proper CountryName, it should insert (add) the country to the existing list of countries
         public void AddCountry_ProperCountryDetails()
         {
             //Arrange
@@ -83,8 +83,8 @@ namespace CRUDTests
         #endregion
 
         #region GetAllCountries
-        //The list of countries should be empty by default (before adding any countries)
         [Fact]
+        //The list of countries should be empty by default (before adding any countries)
         public void GetAllCountries_EmptyList()
         {
             //Act
@@ -120,6 +120,37 @@ namespace CRUDTests
             {
                 Assert.Contains(expected_country, actualCountryResponseList);
             }
+        }
+        #endregion
+
+        #region GetCountryByCountryID
+        [Fact]
+        //If we supply null as CountryID, it should return null as CountryResponse
+        public void GetCountryByCountryID_NullCountryID()
+        {
+            //Arrange
+            Guid? countryID = null;
+
+            //Act
+            CountryResponse? country_response_from_get_method = _countriesService.GetCountryByCountryID(countryID);
+
+            //Assert
+            Assert.Null(country_response_from_get_method);
+        }
+
+        [Fact]
+        //If we supply a valid country id, it should return the matching country details as CountryResponse object
+        public void GetCountryByCountryID_ValidCountryID()
+        {
+            //Arrange
+            CountryAddRequest country_add_request = new CountryAddRequest() { CountryName = "China" };
+            CountryResponse country_response_from_add = _countriesService.AddCountry(country_add_request);
+
+            //Act
+            CountryResponse? country_response_from_get = _countriesService.GetCountryByCountryID(country_response_from_add.CountryID);
+
+            //Assert
+            Assert.Equal(country_response_from_add, country_response_from_get);
         }
         #endregion
     }
