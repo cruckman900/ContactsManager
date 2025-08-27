@@ -5,9 +5,9 @@ using ServiceContracts;
 
 namespace Services
 {
-    public class PersonsService : IPersonService
+    public class PersonsService : IPersonsService
     {
-        public PersonResponse AddPerson(PersonAddRequest personAddRequest)
+        public PersonResponse AddPerson(PersonAddRequest? personAddRequest)
         {
             throw new NotImplementedException();
         }
